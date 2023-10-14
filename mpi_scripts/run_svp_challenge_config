@@ -1,0 +1,8 @@
+# Holzfusion has 2 physical CPUs, but we also run the top-level python program on this node.
+-n 1 ./execute_svp_challenge_py.sh 
+-n 1 ./execute_worker.sh --threads 48
+# Solardiesel has 2 physical CPUs
+-n 2 ./execute_worker.sh --threads 18
+
+# Atomkohle has 2 physical CPUs
+-n 2 ./execute_worker.sh --threads 14
