@@ -1067,7 +1067,7 @@ void Siever::bgj1_round_sieve(double alpha) {
 
 void Siever::bgj1_add_to_tdb(std::vector<Entry>& tdb, Entry& entry, const FT maxlen) {
   recompute_data_for_entry<Recompute::recompute_uid>(entry);
-  if(mpi.owns_uid(entry.uid) && uid_hash_table.check_uid(entry.uid)) {
+  if(mpi.owns_uid(entry.uid) && !uid_hash_table.check_uid(entry.uid)) {
     recompute_data_for_entry<Recompute::recompute_all_and_consider_otf_lift & (~Recompute::recompute_uid)>(entry);
     if(entry.len < maxlen && uid_hash_table.insert_uid(entry.uid)) {
       tdb.emplace_back(entry);
